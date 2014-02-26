@@ -5,6 +5,7 @@ import java.util.List;
 import android.location.Location;
 
 import com.classproj.placeit.mockView;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
 import Models.PlaceIt;

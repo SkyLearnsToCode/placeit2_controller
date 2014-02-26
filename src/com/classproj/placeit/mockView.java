@@ -1,6 +1,5 @@
 package com.classproj.placeit;
 
-import java.util.Iterator;
 import java.util.List;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -12,7 +11,6 @@ import Models.PlaceIt;
 
 public class mockView implements iView{
 	GoogleMap googleMap; 
-	
 	List<Marker> mMarkers;
 	
 	@Override

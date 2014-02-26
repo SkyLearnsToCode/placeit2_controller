@@ -3,16 +3,23 @@ package Models;
 import java.sql.Date;
 import java.util.Calendar;
 
-public class PlaceIt {
+public abstract class PlaceIt {
     
     //private variables
-    int _id;
-    String _title;
-    String _description;
-    double _latitude;
-    double _longitude;
-    long _activeDate;
-    String _displayType;
+	/**
+	 * @param title
+	 * @param description
+	 * @param latitude
+	 * @param longitude
+	 * @param date
+	 */
+		int _id;
+	   	String _title;
+	    String _description;
+	    double _latitude;
+	    double _longitude;
+	    long _activeDate;
+	    String _displayType;
      
     // Empty constructor
     public PlaceIt(){
@@ -21,89 +28,54 @@ public class PlaceIt {
     // constructor
     
     public PlaceIt(String title, String description, double latitude, double longitude, long date){
-        this._title = title;
-        this._description = description;
-        this._latitude = latitude;
-        this._longitude = longitude;
-        this._activeDate = date;
+       
     }
     
     public PlaceIt(String title, String description, double latitude, double longitude){
-        this._title = title;
-        this._description = description;
-        this._latitude = latitude;
-        this._longitude = longitude;
-        this._activeDate = new java.util.Date().getTime();
+       
     }
     
 
      
     // constructor
     public PlaceIt(String title, String description){
-        this._title = title;
-        this._description = description;
+        
     }
     // getting ID
-    public int getID(){
-        return this._id;
-    }
+    abstract public int getID();
      
     // setting ID
-    public void setID(int id){
-        this._id = id;
-    }
+    abstract public void setID(int id);
      
     // getting title
-    public String getTitle(){
-        return this._title;
-    }
+    abstract public String getTitle();
      
     // setting title
-    public void setTitle(String title){
-        this._title = title;
-    }
+    abstract public void setTitle(String title);
      
     // getting description
-    public String getDescription(){
-        return this._description;
-    }
+    abstract public String getDescription();
      
     // setting description
-    public void setDescription(String description){
-        this._description = description;
-    }
+    abstract public void setDescription(String description);
     
     // getting longitude
-    public double getLongitude(){
-        return this._longitude;
-    }
+    abstract public double getLongitude();
      
     // setting description
-    public void setLongitude(double longitude){
-        this._longitude = longitude;
-    }
+    abstract public void setLongitude(double longitude);
     
     // getting longitude
-    public double getLatitude(){
-        return this._latitude;
-    }
+    abstract public double getLatitude();
      
     // setting description
-    public void setLatitude(double latitude){
-        this._latitude = latitude;
-    }
+    abstract public void setLatitude(double latitude);
     
     // getting date
-    public java.util.Date getActiveDate(){
-        return new java.util.Date(this._activeDate);
-    }
+    abstract public java.util.Date getActiveDate();
      
     // setting description
-    public void setActiveDate(long sd){
-        this._activeDate = sd;
-    }
+    abstract public void setActiveDate(long sd);
 
-	public boolean isActive() {
-		return this._activeDate != 0;
-	}
+    abstract public boolean isActive();
 }

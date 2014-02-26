@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import Models.PlaceIt;
+import Models.singlePlaceIt;
 import PlaceItDB.iPlaceItModel;
 import android.location.Location;
 
@@ -36,7 +37,7 @@ public class PlaceItController {
 	public PlaceIt AddPlaceIt(String titleText, String descText,
 			final LatLng position) {
 
-		PlaceIt placeit = new PlaceIt(titleText, descText, position.latitude,
+		PlaceIt placeit = new singlePlaceIt(titleText, descText, position.latitude,
 				position.longitude);
 		placeits.add(placeit);
 		db.addPlaceIt(placeit);
