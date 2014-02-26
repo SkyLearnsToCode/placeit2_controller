@@ -1,26 +1,7 @@
 package Models;
 
-import java.sql.Date;
-import java.util.Calendar;
-
 public abstract class PlaceIt {
     
-    //private variables
-	/**
-	 * @param title
-	 * @param description
-	 * @param latitude
-	 * @param longitude
-	 * @param date
-	 */
-		int _id;
-	   	String _title;
-	    String _description;
-	    double _latitude;
-	    double _longitude;
-	    long _activeDate;
-	    String _displayType;
-     
     // Empty constructor
     public PlaceIt(){
          
