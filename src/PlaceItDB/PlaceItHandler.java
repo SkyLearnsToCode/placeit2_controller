@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import Models.CPlaceIt;
 import Models.PlaceIt;
-import Models.singlePlaceIt;
+import Models.LocationPlaceIt;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -85,7 +86,7 @@ public class PlaceItHandler extends SQLiteOpenHelper implements iPlaceItModel {
 		if (cursor != null) {
 			cursor.moveToFirst();
 
-			PlaceIt placeit = new singlePlaceIt(cursor.getString(1),
+			PlaceIt placeit = new LocationPlaceIt(cursor.getString(1),
 					cursor.getString(2),
 					Double.parseDouble(cursor.getString(3)),
 					Double.parseDouble(cursor.getString(4)),
@@ -109,7 +110,7 @@ public class PlaceItHandler extends SQLiteOpenHelper implements iPlaceItModel {
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
-				PlaceIt contact = new singlePlaceIt();
+				PlaceIt contact = new LocationPlaceIt();
 				contact.setID(Integer.parseInt(cursor.getString(0)));
 				contact.setTitle(cursor.getString(1));
 				contact.setDescription(cursor.getString(2));
@@ -171,6 +172,12 @@ public class PlaceItHandler extends SQLiteOpenHelper implements iPlaceItModel {
 		placeit.setActiveDate(0); /* maybe... */
 		this.updatePlaceIt(placeit);
 
+	}
+
+	@Override
+	public void addCPlaceIt(CPlaceIt cplaceit) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

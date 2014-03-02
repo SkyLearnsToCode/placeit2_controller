@@ -3,7 +3,7 @@ package Models;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class catPlaceIt extends singlePlaceIt {
+public class CPlaceIt extends PlaceIt {
 
 	int _id;
     String _title;
@@ -14,29 +14,17 @@ public class catPlaceIt extends singlePlaceIt {
     String _displayType;
     ArrayList<String> _cat;
     
-	public catPlaceIt() {
+	public CPlaceIt() {
 		// TODO Auto-generated constructor stub
 		_cat = new ArrayList<String>();
 	}
 
-	public catPlaceIt(String title, String description, double latitude,
-			double longitude, long date) {
-		super(title, description, latitude, longitude, date);
-		// TODO Auto-generated constructor stub
-		_cat = new ArrayList<String>();
-	}
 
-	public catPlaceIt(String title, String description, double latitude,
-			double longitude) {
-		super(title, description, latitude, longitude);
+	public CPlaceIt(String title, String description, ArrayList<String> clist) {
 		// TODO Auto-generated constructor stub
-		_cat = new ArrayList<String>();
-	}
-
-	public catPlaceIt(String title, String description) {
-		super(title, description);
-		// TODO Auto-generated constructor stub
-		_cat = new ArrayList<String>();
+		_title = title;
+		_description = description;
+		_cat = clist;
 	}
 
 	@Override

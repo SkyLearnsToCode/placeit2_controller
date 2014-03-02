@@ -6,6 +6,8 @@ package PlaceItDB;
 import java.util.List;
 import java.util.ListIterator;
 
+import Models.CPlaceIt;
+import Models.LocationPlaceIt;
 import Models.PlaceIt;
 
 /**
@@ -15,6 +17,7 @@ import Models.PlaceIt;
 public class mockPlaceItHandler implements iPlaceItModel{
 
 	public List<PlaceIt> mocklist;
+	public List<CPlaceIt> mockCplaceit;
 	
 	//constructor
 	
@@ -149,6 +152,12 @@ public class mockPlaceItHandler implements iPlaceItModel{
 		// TODO Auto-generated method stub
 		placeit.setActiveDate(0); /* maybe...*/
 		this.updatePlaceIt(placeit);
+	}
+
+	@Override
+	public void addCPlaceIt(CPlaceIt cplaceit) {
+		// TODO Auto-generated method stub
+		mockCplaceit.add(cplaceit);
 	}
 	
 

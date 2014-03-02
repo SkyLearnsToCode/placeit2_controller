@@ -2,7 +2,7 @@ package com.classproj.placeit.tests;
 
 import junit.framework.TestCase;
 import Models.PlaceIt;
-import Models.singlePlaceIt;
+import Models.LocationPlaceIt;
 import PlaceItControllers.PlaceItController;
 import PlaceItControllers.PlaceItScheduler;
 import PlaceItDB.iPLScheduleModel;
@@ -78,7 +78,7 @@ public class UserStory3Test extends TestCase {
 		String descrip11 = null;
 		double lat = 0;
 		double lng = 0;
-		PlaceIt testplaceit = new singlePlaceIt(title11, descrip11, lat, lng);
+		PlaceIt testplaceit = new LocationPlaceIt(title11, descrip11, lat, lng);
 		
 
 	}

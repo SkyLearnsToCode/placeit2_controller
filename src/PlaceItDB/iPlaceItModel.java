@@ -2,12 +2,15 @@ package PlaceItDB;
 
 import java.util.List;
 
+import Models.CPlaceIt;
 import Models.PlaceIt;
 
 public interface iPlaceItModel {
 
 	// Adding new PlaceIt
 	public void addPlaceIt(PlaceIt PlaceIt);
+	
+	public void addCPlaceIt(CPlaceIt cplaceit);
 
 	// Getting single PlaceIt
 	public PlaceIt getPlaceIt(int id);

@@ -7,7 +7,7 @@ package Models;
  * @author SKY
  *
  */
-public class singlePlaceIt extends PlaceIt {
+public class LocationPlaceIt extends PlaceIt {
 
 	/**
 	 * 
@@ -20,12 +20,12 @@ public class singlePlaceIt extends PlaceIt {
     long _activeDate;
     String _displayType;
     
-	public singlePlaceIt() {
+	public LocationPlaceIt() {
 		// TODO Auto-generated constructor stub
 	}
 
 	
-	public singlePlaceIt(String title, String description, double latitude,
+	public LocationPlaceIt(String title, String description, double latitude,
 			double longitude, long date) {
 		super(title, description, latitude, longitude, date);
 		// TODO Auto-generated constructor stub
@@ -37,7 +37,7 @@ public class singlePlaceIt extends PlaceIt {
 	}
 
 	
-	public singlePlaceIt(String title, String description, double latitude,
+	public LocationPlaceIt(String title, String description, double latitude,
 			double longitude) {
 		super(title, description, latitude, longitude);
 		// TODO Auto-generated constructor stub
@@ -52,7 +52,7 @@ public class singlePlaceIt extends PlaceIt {
 	 * @param title
 	 * @param description
 	 */
-	public singlePlaceIt(String title, String description) {
+	public LocationPlaceIt(String title, String description) {
 		super(title, description);
 		// TODO Auto-generated constructor stub
 		this._title = title;
