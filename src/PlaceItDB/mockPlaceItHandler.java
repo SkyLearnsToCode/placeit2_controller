@@ -6,33 +6,35 @@ package PlaceItDB;
 import java.util.List;
 import java.util.ListIterator;
 
-import Models.CPlaceIt;
-import Models.LocationPlaceIt;
 import Models.PlaceIt;
 
 /**
  * @author SKY
- *
+ * @author Charlie
  */
 public class mockPlaceItHandler implements iPlaceItModel{
-
 	public List<PlaceIt> mocklist;
-	public List<CPlaceIt> mockCplaceit;
-	
+	public static boolean deletecall = false; 
 	//constructor
+	
+	//Used for when the db calls delete, checks if it was called. 
+	public boolean getCall() {
+		return deletecall; 
+	}
 	
 	public mockPlaceItHandler (List<PlaceIt> userInput){
 		mocklist = userInput;
 	}
-	
+
 	@Override
-	public void addPlaceIt(PlaceIt PlaceIt) {
+	public long addPlaceIt(PlaceIt PlaceIt) {
 		// TODO Auto-generated method stub
 		mocklist.add(PlaceIt);
+		return 1;
 	}
 
 	@Override
-	public PlaceIt getPlaceIt(int id) {
+	public PlaceIt getPlaceIt(String id) {
 		
 		PlaceIt result = null;
 		// TODO Auto-generated method stub
@@ -61,7 +63,7 @@ public class mockPlaceItHandler implements iPlaceItModel{
 	public int updatePlaceIt(PlaceIt placeit) {
 		// TODO Auto-generated method stub
 		int num = 0;
-		int id = placeit.getID();
+		String id = placeit.getID();
 		String title = placeit.getTitle();
 		String description = placeit.getDescription();
 		Double latitude = placeit.getLatitude();
@@ -88,8 +90,9 @@ public class mockPlaceItHandler implements iPlaceItModel{
 
 	@Override
 	public void deletePlaceIt(PlaceIt PlaceIt) {
+		deletecall = true; 
 		// TODO Auto-generated method stub
-		int id = PlaceIt.getID();
+		String id = PlaceIt.getID();
 		String title = PlaceIt.getTitle();
 		String description = PlaceIt.getDescription();
 		Double latitude = PlaceIt.getLatitude();
@@ -97,7 +100,8 @@ public class mockPlaceItHandler implements iPlaceItModel{
 		java.util.Date activeDate= PlaceIt.getActiveDate();
 		
 		// TODO Auto-generated method stub
-		for (PlaceIt p:mocklist ) {
+		for (int i = 0; i < mocklist.size() -1; i++ ) {
+			PlaceIt p = mocklist.get(i); 
 		    if (p.getID() == id){
 		    	boolean e = p.getTitle().equals(title) 
 		    			&& p.getDescription().equals(description) 
@@ -152,12 +156,6 @@ public class mockPlaceItHandler implements iPlaceItModel{
 		// TODO Auto-generated method stub
 		placeit.setActiveDate(0); /* maybe...*/
 		this.updatePlaceIt(placeit);
-	}
-
-	@Override
-	public void addCPlaceIt(CPlaceIt cplaceit) {
-		// TODO Auto-generated method stub
-		mockCplaceit.add(cplaceit);
 	}
 	
 

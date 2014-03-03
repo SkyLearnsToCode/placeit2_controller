@@ -70,7 +70,7 @@ public class PLScheduleHandler extends SQLiteOpenHelper implements
 			SQLiteDatabase db = this.getWritableDatabase();
 			for (Integer day : days) {
 				ContentValues values = new ContentValues();
-				values.put(KEY_PLACEITID, Integer.toString(placeit.getID()));
+				values.put(KEY_PLACEITID, placeit.getID());
 				values.put(KEY_PLACEITDAY, Integer.toString(day));
 				db.insert(TABLE_PLSCHEDULE, null, values);
 			}

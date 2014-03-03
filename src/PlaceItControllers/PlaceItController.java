@@ -2,12 +2,14 @@ package PlaceItControllers;
 
 import java.util.List;
 import java.util.Vector;
-
 import Models.PlaceIt;
-import Models.LocationPlaceIt;
 import PlaceItDB.iPlaceItModel;
+import android.content.Context;
 import android.location.Location;
+import android.widget.Toast;
 
+import android.annotation.SuppressLint;
+import android.location.Location;
 import com.classproj.placeit.iView;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -16,7 +18,8 @@ public class PlaceItController {
 	private iPlaceItModel db;
 	private iView view;
 	private List<PlaceIt> placeits;
-
+	List<PlaceIt> nonActive = new Vector<PlaceIt>();
+	List<PlaceIt> active = new Vector<PlaceIt>();
 	public PlaceItController(iPlaceItModel db, iView view) {
 		this.db = db;
 		this.view = view;
@@ -34,20 +37,44 @@ public class PlaceItController {
 		}
 	}
 
+	@SuppressLint("NewApi")
 	public PlaceIt AddPlaceIt(String titleText, String descText,
 			final LatLng position) {
+		
+		// If title and description empty. no Place-It is created, and return null.
+		if (titleText.length() == 0 && descText.length() == 0) {
+			return null;
+		}
+		
+		// If title is empty but description is not, take first 10 chars of the description to be the title.
+		if (titleText.length() == 0) {
+			int descLength = descText.length();
+			if (descLength < 10) {
+				titleText = descText.substring(0, descLength);
+			}
+			else {
+				titleText = descText.substring(0, 10);
+			}
+		}
 
-		PlaceIt placeit = new LocationPlaceIt(titleText, descText, position.latitude,
+		PlaceIt placeit = new PlaceIt(titleText, descText, position.latitude,
 				position.longitude);
+		
+		Long insertId = db.addPlaceIt(placeit);
+		placeit.setID(insertId.toString());
 		placeits.add(placeit);
-		db.addPlaceIt(placeit);
 		view.addMarker(placeit);
 		return placeit;
 	}
 	
-	public void RemovePlaceIt(PlaceIt placeit){
-	//	placeits.remove(placeit);
+	public void deactivatePlaceIt(PlaceIt placeit){
 		db.deactivatePlaceit(placeit);
+		view.removeMarker(placeit);
+	}
+	
+	public void removePlaceIt(PlaceIt placeit){
+		
+		db.deletePlaceIt(placeit);
 		view.removeMarker(placeit);
 	}
 	
@@ -59,6 +86,9 @@ public class PlaceItController {
 	public boolean checkViscinity (Location currLoc, Location checkLoc)
 	{
 		return false;
+		
+	}
+	public void deleteFromList(PlaceIt placeit) {
 		
 	}
 
@@ -83,9 +113,57 @@ public class PlaceItController {
 				}	
 			}
 		}
-		
+		view.notifyUser(clean,"Controller");
 		return clean;
 
 	}
+	public List<PlaceIt> getNonActivePlaceIts()
+	{
+		nonActive = new Vector<PlaceIt>();
+		for (PlaceIt i : placeits)
+		{
+			if (!i.isActive())
+			{
+				nonActive.add(i);
+			}
+		}
+		
+		return nonActive;
+	}
+	
+	public List<PlaceIt> getActiveList()
+	{
+		active = new Vector<PlaceIt>();
+		for (PlaceIt i : placeits)
+		{
+			if (i.isActive())
+			{
+				active.add(i);
+			}
+		}
+		
+		return active;
+	}
+	
+	public String movePlaceIts(int id)
+	{
+		deactivatePlaceIt(placeits.get(id));
+		return placeits.get(id).getTitle();
+	}
+
+	public void deletePlaceIts(int id, Context cont)
+	{
+		Toast.makeText(cont, "Did it", Toast.LENGTH_LONG).show();
+		this.removePlaceIt(placeits.get(id));
+	}
+
+	public iPlaceItModel getDB() {
+		return this.db;
+	}
+
+	public iView getView() {
+		return this.view;
+	}
+	
 
 }

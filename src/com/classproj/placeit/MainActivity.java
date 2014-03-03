@@ -131,7 +131,7 @@ public class MainActivity extends FragmentActivity implements
 
 		if (myLocationNow != null) {
 			checkList = controller.checkCoordinates(myLocationNow);
-			checkList = scheduler.checkActive(checkList);
+			//checkList = scheduler.checkActive(checkList);
 		}
 
 		if (checkList != null && checkList.size() != 0) {
@@ -341,7 +341,7 @@ public class MainActivity extends FragmentActivity implements
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 	//gotta rename
-						controller.RemovePlaceIt(placeit);
+						controller.removePlaceIt(placeit);
 						
 						Toast.makeText(MainActivity.this, "Placeit value has been removed",
 								Toast.LENGTH_SHORT).show();
@@ -448,6 +448,12 @@ public class MainActivity extends FragmentActivity implements
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void notifyUser(List<PlaceIt> clean, String string) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

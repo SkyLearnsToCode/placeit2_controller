@@ -1,62 +1,142 @@
 package Models;
 
-public abstract class PlaceIt {
-    
-    // Empty constructor
-    public PlaceIt(){
-         
-    }
-    // constructor
-    
-    public PlaceIt(String title, String description, double latitude, double longitude, long date){
-       
-    }
-    
-    public PlaceIt(String title, String description, double latitude, double longitude){
-       
-    }
-    
+import java.sql.Date;
+import java.util.Calendar;
 
-     
-    // constructor
-    public PlaceIt(String title, String description){
-        
-    }
-    // getting ID
-    abstract public int getID();
-     
-    // setting ID
-    abstract public void setID(int id);
-     
-    // getting title
-    abstract public String getTitle();
-     
-    // setting title
-    abstract public void setTitle(String title);
-     
-    // getting description
-    abstract public String getDescription();
-     
-    // setting description
-    abstract public void setDescription(String description);
-    
-    // getting longitude
-    abstract public double getLongitude();
-     
-    // setting description
-    abstract public void setLongitude(double longitude);
-    
-    // getting longitude
-    abstract public double getLatitude();
-     
-    // setting description
-    abstract public void setLatitude(double latitude);
-    
-    // getting date
-    abstract public java.util.Date getActiveDate();
-     
-    // setting description
-    abstract public void setActiveDate(long sd);
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
-    abstract public boolean isActive();
+public class PlaceIt extends abPlaceIt{
+
+	// private variables
+	//int _id;
+	//String _title;
+	//String _description;
+	double _latitude;
+	double _longitude;
+	//long _activeDate;
+	//String _displayType;
+
+	// Empty constructor
+	public PlaceIt() {
+		super();
+	}
+
+	// constructor
+
+	public PlaceIt(String id, String title, String description, double latitude,
+			double longitude, long date) {
+		this._id = id;
+		this._title = title;
+		this._description = description;
+		this._latitude = latitude;
+		this._longitude = longitude;
+		this._activeDate = date;
+	}
+
+	public PlaceIt(String title, String description, double latitude,
+			double longitude, long date) {
+		this._title = title;
+		this._description = description;
+		this._latitude = latitude;
+		this._longitude = longitude;
+		this._activeDate = date;
+	}
+
+	public PlaceIt(String title, String description, double latitude,
+			double longitude) {
+		this._title = title;
+		this._description = description;
+		this._latitude = latitude;
+		this._longitude = longitude;
+		this._activeDate = new java.util.Date().getTime();
+	}
+
+	public boolean equals(Marker o) {
+
+			Marker marker = (Marker) o;
+			LatLng position = marker.getPosition();
+			if (position.latitude == this.getLatitude()
+					&& position.longitude == this.getLongitude()) {
+				if (marker.getTitle().equals(this.getTitle())
+						&& marker.getSnippet().equals(this.getDescription())) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+	}
+
+	// constructor
+	public PlaceIt(String title, String description) {
+		this._title = title;
+		this._description = description;
+	}
+
+	// getting ID
+	public String getID() {
+		return this._id;
+	}
+
+	// setting ID
+	public void setID(String id) {
+		this._id = id;
+	}
+
+	// getting title
+	public String getTitle() {
+		return this._title;
+	}
+
+	// setting title
+	public void setTitle(String title) {
+		this._title = title;
+	}
+
+	// getting description
+	public String getDescription() {
+		return this._description;
+	}
+
+	// setting description
+	public void setDescription(String description) {
+		this._description = description;
+	}
+
+	// getting longitude
+	public double getLongitude() {
+		return this._longitude;
+	}
+
+	// setting description
+	public void setLongitude(double longitude) {
+		this._longitude = longitude;
+	}
+
+	// getting longitude
+	public double getLatitude() {
+		return this._latitude;
+	}
+
+	// setting description
+	public void setLatitude(double latitude) {
+		this._latitude = latitude;
+	}
+
+	// getting date
+	public java.util.Date getActiveDate() {
+		return new java.util.Date(this._activeDate);
+	}
+
+	// setting description
+	public void setActiveDate(long sd) {
+		this._activeDate = sd;
+	}
+
+	
+	public boolean isActive() {
+		return this._activeDate != 0;
+	}
 }

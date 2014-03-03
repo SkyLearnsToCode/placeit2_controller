@@ -7,25 +7,25 @@ import java.util.List;
 public class PLSchedule {
 
 	// private variables
-	int _id;
-	int placeitID; // this is a foreign key to placeIt
+	String _id;
+	String placeitID; // this is a foreign key to placeIt
 	List<Integer> schedules;
 
-	protected PLSchedule(int placeitID) {
+	protected PLSchedule(String placeitID) {
 		this.placeitID = placeitID;
 		this.schedules = new LinkedList<Integer>();
 	}
 
-	protected PLSchedule(int placeitID, List<Integer> schedules) {
+	protected PLSchedule(String placeitID, List<Integer> schedules) {
 		this(placeitID);
 		this.schedules = schedules;
 	}
 
-	public int getPlaceItId() {
+	public String getPlaceItId() {
 		return this.placeitID;
 	}
 
-	public void setPlaceItId(int placeitID) {
+	public void setPlaceItId(String placeitID) {
 		this.placeitID = placeitID;
 	}
 

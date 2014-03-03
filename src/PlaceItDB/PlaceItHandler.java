@@ -6,7 +6,6 @@ import java.util.List;
 
 import Models.CPlaceIt;
 import Models.PlaceIt;
-import Models.LocationPlaceIt;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -58,7 +57,7 @@ public class PlaceItHandler extends SQLiteOpenHelper implements iPlaceItModel {
 	}
 
 	@Override
-	public void addPlaceIt(PlaceIt placeIt) {
+	public long addPlaceIt(PlaceIt placeIt) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
@@ -73,11 +72,12 @@ public class PlaceItHandler extends SQLiteOpenHelper implements iPlaceItModel {
 		// Inserting Row
 		db.insert(TABLE_PLACEITS, null, values);
 		db.close(); // Closing database connection
+		return 1;
 
 	}
 
 	@Override
-	public PlaceIt getPlaceIt(int id) {
+	public PlaceIt getPlaceIt(String id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(TABLE_PLACEITS, new String[] { KEY_ID,
@@ -86,7 +86,7 @@ public class PlaceItHandler extends SQLiteOpenHelper implements iPlaceItModel {
 		if (cursor != null) {
 			cursor.moveToFirst();
 
-			PlaceIt placeit = new LocationPlaceIt(cursor.getString(1),
+			PlaceIt placeit = new PlaceIt(cursor.getString(1),
 					cursor.getString(2),
 					Double.parseDouble(cursor.getString(3)),
 					Double.parseDouble(cursor.getString(4)),
@@ -110,8 +110,8 @@ public class PlaceItHandler extends SQLiteOpenHelper implements iPlaceItModel {
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
-				PlaceIt contact = new LocationPlaceIt();
-				contact.setID(Integer.parseInt(cursor.getString(0)));
+				PlaceIt contact = new PlaceIt();
+				contact.setID(cursor.getString(0));
 				contact.setTitle(cursor.getString(1));
 				contact.setDescription(cursor.getString(2));
 				contact.setLatitude(Double.valueOf(cursor.getString(4)));
@@ -174,10 +174,5 @@ public class PlaceItHandler extends SQLiteOpenHelper implements iPlaceItModel {
 
 	}
 
-	@Override
-	public void addCPlaceIt(CPlaceIt cplaceit) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

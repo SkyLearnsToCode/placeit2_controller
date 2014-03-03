@@ -23,7 +23,7 @@ public class mockPLScheduleModel implements iPLScheduleModel {
 	
 	List<PLSchedule> scheduleList = new ArrayList<PLSchedule>();
 	
-	private PLSchedule findSchedule(int placeitID){
+	private PLSchedule findSchedule(String placeitID){
 		for(PLSchedule s : scheduleList){
 			if (s.getPlaceItId()==placeitID){
 				return s;
@@ -35,7 +35,7 @@ public class mockPLScheduleModel implements iPLScheduleModel {
 	@Override
 	public PlaceIt addSchedule(PlaceIt placeit, List<Integer> day) {
 		// TODO Auto-generated method stub
-		int id = placeit.getID();
+		String id = placeit.getID();
 		PLSchedule ns = this.findSchedule(id);
 		if(ns != null){
 			ns.setInteger(day);
@@ -53,7 +53,7 @@ public class mockPLScheduleModel implements iPLScheduleModel {
 	@Override
 	public PlaceIt removeSchedule(PlaceIt placeit, List<Integer> day) {
 		// TODO Auto-generated method stub
-		int id = placeit.getID();
+		String id = placeit.getID();
 		PLSchedule rs = this.findSchedule(id);
 		if(rs!=null){
 			scheduleList.remove(rs);

@@ -51,4 +51,10 @@ public class mockView implements iView{
 		}
 		return null;
 	}
+
+	@Override
+	public void notifyUser(List<PlaceIt> clean, String string) {
+		// TODO Auto-generated method stub
+		
+	}
 	}
