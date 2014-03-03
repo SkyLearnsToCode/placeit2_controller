@@ -15,7 +15,7 @@ public class CPlaceIt extends abPlaceIt {
 	}
 
 
-	public CPlaceIt(String title, String description, ArrayList<Category> clist) {
+	public CPlaceIt(String title, String description, List<Category> clist) {
 		// TODO Auto-generated constructor stub
 		super(title,description);
 		_cat = clist;
